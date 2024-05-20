@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf8">
+	<title>Pantilt Api</title>
+	<style>
+		a{
+			text-decoration: none;
+
+		}
+.btn{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+.btn1{
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+	</style>
+</head>
+<body>
+	<div class="btn1">
+		<input class="btn" id="id1track" type="submit" value="tracking start" onclick="submit('track')">	
+	</div>
+
+	<script type="text/javascript">
+	x=y==w=h=0
+	document.getElementById("x_hor").addEventListener("change", function() {
+		x = Number(document.getElementById('x_hor').value)
+	});
+	document.getElementById("y_hor").addEventListener("change", function() {
+		y = Number(document.getElementById('y_hor').value)
+	});
+	document.getElementById("width").addEventListener("change", function() {
+		w = Number(document.getElementById('width').value)
+	});
+	document.getElementById("height").addEventListener("change", function() {
+		h= Number(document.getElementById('height').value)
+	});
+    function submit(id) {
+		 x= Number(document.getElementById('x_hor').value)
+		y = Number(document.getElementById('y_hor').value)
+		w = Number(document.getElementById('width').value)
+		h = Number(document.getElementById('height').value)
+		// console.log(ps)
+		//http://localhost:3001/left?p_speed=22&t_speed=0
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                console.log(xhr.response);
+         			var y = document.getElementsByClassName("btn");
+					var i;
+					for (i = 0; i < y.length; i++) {
+ 					y[i].style.backgroundColor = "white";
+					}
+				document.getElementById("id1"+id).style.background='rgb(100, 255, 57) none repeat scroll 0% 0%';
+        }
+        }
+        console.log('http://localhost:5001/'+id+'?x_hor='+x+'&y_hor='+y+"&width="+w+"&height="+h)
+        xhr.open('get', '/'+id+'?x_hor='+x+'&y_hor='+y+"&width="+w+"&height="+h, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.send();
+    }
+
+	</script>
+	</body>
+	</html>
